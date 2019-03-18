@@ -37,4 +37,19 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/', (req, res) => {
+    const postdefault = req.body;
+    const queryText = `UPDATE "admin_table"
+    SET "default_value" = $2
+    WHERE "card_id" = $1;`
+    const queryValues = [postdefault.id,
+        postdefault.card_value]
+        pool.query(queryText, queryValues)
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+        console.log('Error completing POST shelf query', err);
+        res.sendStatus(500);
+    });
+})
+
 module.exports = router;
