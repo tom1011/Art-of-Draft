@@ -23,12 +23,18 @@ router.get('/', (req, res) => {
         });
 });
 
-/**
- * POST route template
- */
-
 router.post('/', (req, res) => {
-
+    console.log(req.body)
+    const postdefault = req.body;
+    const queryText = `INSERT INTO "admin_table" ("card_id" , "default_value") VALUES ($1, $2);`
+    const queryValues = [postdefault.id,
+        postdefault.card_value]
+        pool.query(queryText, queryValues)
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+        console.log('Error completing POST shelf query', err);
+        res.sendStatus(500);
+    });
 });
 
 module.exports = router;

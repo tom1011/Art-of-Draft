@@ -4,6 +4,7 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import getCardSaga from './getCardSaga';
 import getAdminValues from './getCardAdminSaga';
+import postAdminValues from './PostCardAdminSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,5 +20,7 @@ export default function* rootSaga() {
     userSaga(),
     getCardSaga(),// gets the cards from DB
     getAdminValues(), // get default card values from DB
+    postAdminValues(),
+
   ]);
 }

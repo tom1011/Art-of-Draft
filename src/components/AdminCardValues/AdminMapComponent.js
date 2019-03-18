@@ -5,16 +5,17 @@ class AdminCardValueList extends Component {
     state = {
         cardInfo: {
             id: this.props.item.card_id,
-            card_value: this.props.item.default_value,
+            card_value: 0,
             begincard_value: this.props.item.default_value,
         }
     }
 
-    handleChange = () => (event) => {
+    handleChange = (event) => {
         console.log('in admin handle change function', event.target.value)
+        console.log(this.state.cardInfo)
         this.setState({
             cardInfo: {
-                ...this.state,
+                ...this.state.cardInfo,
                 card_value: event.target.value,
             }
         })
@@ -22,16 +23,11 @@ class AdminCardValueList extends Component {
 
     handleSubmint = (id) => (event) => {
         console.log('in handlesubmit', id)
-        this.setState({
-            cardInfo: {
-                ...this.state,
-                id: id,
-            }
-        })
-        if (this.state.cardInfo.id && this.state.cardInfo.card_value && !this.state.cardInfo.begincard_value) {
+        if (this.state.cardInfo.card_value && this.state.cardInfo.begincard_value) {
+            console.log('in update')
             this.props.dispatch({ type: 'UPDATE_CARD_ADMIN', payload: this.state.cardInfo })
-
-        } else if (this.state.cardInfo.id && this.state.cardInfo.card_value){
+        } else if (this.state.cardInfo.card_value){
+            console.log('in post')
             this.props.dispatch({ type: 'POST_CARD_ADMIN', payload: this.state.cardInfo })
         }
         else {
