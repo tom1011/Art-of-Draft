@@ -1,31 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import CardMapComponent from './CardMapComponent';
 
 class CardList extends Component {
 
-    componentDidMount = () => {
-        this.getCards()
-    }
+  componentDidMount = () => {
+    this.getCards()
+  }
 
-    getCards = () => {
-    this.props.dispatch({ type: 'GET_CARDS'});
-    }
+  getCards = () => {
+    this.props.dispatch({ type: 'GET_CARDS' });
+  }
 
-    // note I will need to add in conditanol rendering according to what 
-    // the conditanol rendering will be base off of what page you are in
-    // it will change how the map function works however everything else
-    // will come from this page.
   render() {
+
     return (
       <div>
-        {this.props.cards.map(item => <p>{item.card_name}</p>)}
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>{window.location.href.split('/').pop() === 'draft' ? "Card Draft Value" : null}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {window.location.href.split('/').pop() === 'draft' ? this.props.cards.map(item => <CardMapComponent item={item} key={item.card_id}/>) : null}
+          </tbody>
+        </table>
       </div>
     );
   }
 }
 
 const mapStateToProps = (reduxState) => {
-    return reduxState;
+  return reduxState;
 }
 
 export default connect(mapStateToProps)(CardList);
