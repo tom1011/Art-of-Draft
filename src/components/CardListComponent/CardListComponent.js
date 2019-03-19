@@ -61,7 +61,10 @@ class CardList extends Component {
             </tr>
           </thead>
           <tbody>
-            {window.location.href.split('/').pop() === 'draft' ?
+          {window.location.href.split('/').pop() === 'draft' && !this.state.filter ?
+             this.props.adminCardValues
+             .map(item => <CardMapComponent item={item} key={item.card_id} />) : null}
+            {window.location.href.split('/').pop() === 'draft' && this.state.filter ?
              this.props.adminCardValues.filter(card => card.color_name === this.state.filter)
              .map(item => <CardMapComponent item={item} key={item.card_id} />) : null}
           </tbody>
