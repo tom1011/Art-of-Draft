@@ -64,8 +64,10 @@ class CardList extends Component {
           {window.location.href.split('/').pop() === 'draft' && !this.state.filter ?
              this.props.adminCardValues
              .map(item => <CardMapComponent item={item} key={item.card_id} />) : null}
+             {/* will render default screen for draft ie name card draft value and show default values.*/}
             {window.location.href.split('/').pop() === 'draft' && this.state.filter ?
              this.props.adminCardValues.filter(card => card.color_name === this.state.filter)
+            //  this will show the filter list of cards on the draft screen.
              .map(item => <CardMapComponent item={item} key={item.card_id} />) : null}
           </tbody>
         </table>

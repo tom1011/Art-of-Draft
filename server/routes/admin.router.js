@@ -14,7 +14,8 @@ router.get('/', (req, res) => {
    JOIN "color" ON "color"."id" = "card_table"."color_id"
     LEFT JOIN "admin_table"
      ON "card_table"."id" = "admin_table"."card_id" 
-    WHERE "card_table"."type" = 'Hero';`
+    WHERE "card_table"."type" = 'Hero'
+    ORDER BY "admin_table"."default_value" DESC;`
     pool.query(queryText)
         .then((result) => { res.send(result.rows); })
         .catch((err) => {
