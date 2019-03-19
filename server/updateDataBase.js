@@ -25,7 +25,6 @@ updateData = (array) => {
     }
 }
 
-
 // cleans up the api stuff from the huge objects to just the 
 // ones i want.
 cleandata = (rawdata) => {
