@@ -6,7 +6,7 @@ function* cardGetAdminSaga(action) {
         yield console.log('admin get saga', action.payload)
        yield axios({
           method: 'POST',
-          url: '/api/admin/default',
+          url: '/api/admin/draft',
           data: action.payload,
         })
         yield put({type: 'GET_ADMIN_VALUES'})
@@ -16,7 +16,7 @@ function* cardGetAdminSaga(action) {
   }
   
   function* userSaga() {
-    yield takeLatest('POST_CARD_ADMIN', cardGetAdminSaga);
+    yield takeLatest('POST_CARD_DRAFT_ADMIN', cardGetAdminSaga);
   }
   
   export default userSaga;

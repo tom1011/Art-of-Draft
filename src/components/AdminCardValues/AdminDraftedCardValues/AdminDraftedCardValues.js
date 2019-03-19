@@ -10,7 +10,6 @@ class CardList extends Component {
 
     }
 
-
     componentDidMount = () => {
         this.getCards()
     }
@@ -28,7 +27,7 @@ class CardList extends Component {
     }
 
     render() {
-        console.log(this.state)
+
         return (
             <div>
                 
@@ -44,15 +43,13 @@ class CardList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {!this.state.selectedCardId ? this.props.adminCardValues.
-                            map(item => <DraftCardSelector item={item}
-                                 key = {item.id} 
-                                 handleSelect={this.handleSelect}/>) : null}
-                        {this.state.selectedCardId ? this.props.adminCardValues.
-                            map(item => <AdminDraftMapComponent item={item}
-                                 key = {item.id} 
+                        {this.state.selectedCardId ? this.props.adminCardValues.map(item => <AdminDraftMapComponent item={item}
+                                 key = {item.card_id} 
                                  handleSelect={this.handleSelect}
-                                 parentCardId = {this.state.selectedCardId}/>) : null}
+                                 parentCardId = {this.state.selectedCardId}
+                                 parentCardName = {this.state.selectedCardName}/>) : this.props.adminCardValues.map(item => <DraftCardSelector item={item}
+                                    key = {item.card_id} 
+                                    handleSelect={this.handleSelect}/>)}
                     </tbody>
                 </table>    
             </div>

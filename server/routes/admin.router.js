@@ -24,33 +24,58 @@ router.get('/', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/default', (req, res) => {
     console.log(req.body)
     const postdefault = req.body;
     const queryText = `INSERT INTO "admin_table" ("card_id" , "default_value") VALUES ($1, $2);`
     const queryValues = [postdefault.id,
-        postdefault.card_value]
-        pool.query(queryText, queryValues)
+    postdefault.card_value]
+    pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
-        console.log('Error completing POST shelf query', err);
-        res.sendStatus(500);
-    });
+            console.log('Error completing POST shelf query', err);
+            res.sendStatus(500);
+        });
 });
 
-router.put('/', (req, res) => {
+router.put('/default', (req, res) => {
     const postdefault = req.body;
     const queryText = `UPDATE "admin_table"
     SET "default_value" = $2
     WHERE "card_id" = $1;`
     const queryValues = [postdefault.id,
-        postdefault.card_value]
-        pool.query(queryText, queryValues)
+    postdefault.card_value]
+    pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
+            console.log('Error completing POST shelf query', err);
+            res.sendStatus(500);
+        });
+})
+
+router.post('/draft', (req, res) => {
+    console.log('in post draft logging req.body', req.body.parentCardName)
+    const queryText = `ALTER TABLE "admin_table" ADD $1 DECIMAL (4,1);`
+    const queryValues = [req.body.parentCardName]
+    pool.query(queryText, queryValues)
+    .then(() => { res.sendStatus(200); })
+    .catch((err) => {
         console.log('Error completing POST shelf query', err);
         res.sendStatus(500);
     });
+});
+
+router.put('/draft', (req, res) => {
+    const queryText = `UPDATE "admin_table"
+    SET $1 = $2
+    WHERE "card_id" = $3 ;`
+    const queryValues = [postdefault.parentCardName, postdefault.card_value, postdefault.id]
+    pool.query(queryText, queryValues)
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error completing POST shelf query', err);
+            res.sendStatus(500);
+        })
 })
 
 module.exports = router;

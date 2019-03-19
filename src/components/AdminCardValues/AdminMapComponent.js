@@ -20,14 +20,11 @@ class AdminCardValueList extends Component {
             }
         })
     }
-
     handleSubmint = (id) => (event) => {
         // console.log('in handlesubmit', id)
         if (this.state.cardInfo.card_value && this.state.cardInfo.begincard_value) {
-            console.log('in update')
             this.props.dispatch({ type: 'PUT_CARD_ADMIN', payload: this.state.cardInfo })
         } else if (this.state.cardInfo.card_value){
-            console.log('in post')
             this.props.dispatch({ type: 'POST_CARD_ADMIN', payload: this.state.cardInfo })
         }
         else {

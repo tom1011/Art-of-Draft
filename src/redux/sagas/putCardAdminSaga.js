@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* cardGetAdminSaga(action) {
+function* cardpostDraftAdminSaga(action) {
     try {
     yield console.log('admin put saga', action.payload)
        yield axios({
           method: 'PUT',
-          url: '/api/admin',
+          url: '/api/admin/default',
           data: action.payload,
         })
         yield put({type: 'GET_ADMIN_VALUES'})
@@ -16,7 +16,7 @@ function* cardGetAdminSaga(action) {
   }
   
   function* userSaga() {
-    yield takeLatest('PUT_CARD_ADMIN', cardGetAdminSaga);
+    yield takeLatest('PUT_CARD_ADMIN', cardpostDraftAdminSaga);
   }
   
   export default userSaga;

@@ -7,12 +7,14 @@ class AdminCardValueList extends Component {
             id: this.props.item.card_id,
             card_value: this.props.item.default_value,
             begincard_value: this.props.item.default_value,
+            parentCard: this.props.parentCardId,
+            parentCardName: this.props.parentCardName
         }
     }
 
     handleChange = (event) => {
         // console.log('in admin handle change function', event.target.value)
-        console.log(this.state.cardInfo)
+        // console.log(this.state.cardInfo)
         this.setState({
             cardInfo: {
                 ...this.state.cardInfo,
@@ -22,14 +24,16 @@ class AdminCardValueList extends Component {
     }
 
     handleSubmint = (id) => (event) => {
-        // console.log('in handlesubmit', id)
-        if (this.state.cardInfo.card_value && this.state.cardInfo.begincard_value) {
-            console.log('in update')
-            this.props.dispatch({ type: 'PUT_CARD_ADMIN', payload: this.state.cardInfo })
-            // diffrent but similar routes so do the :id ie delete method for 
-        } else if (this.state.cardInfo.card_value){
+        console.log('in handlesubmit logging id then parent card id', id, "this.state.cardInfor", this.state.cardInfo.parentCard)
+        // if (this.state.cardInfo.card_value &&  ) {
+            // console.log('in update')
+            // this.props.dispatch({ type: 'PUT_CARD_ADMIN', payload: this.state.cardInfo })
+            // this will update the information on the table. 
+        // } 
+        if (this.state.cardInfo.card_value !== this.state.begincard_value){
             console.log('in post')
-            this.props.dispatch({ type: 'POST_CARD_ADMIN', payload: this.state.cardInfo })
+            this.props.dispatch({ type: 'POST_CARD_DRAFT_ADMIN', payload: this.state.cardInfo })
+
         }
         else {
             console.log("error posting/updating DB Check value to make sure you typed it in")

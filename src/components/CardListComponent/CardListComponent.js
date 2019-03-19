@@ -7,23 +7,6 @@ class CardList extends Component {
     filter: ''
   }
 
-  // filterListFun = () => {
-  //   console.log('in filterfunction logging this.state.filterlist', this.state.filterList)
-  //   if (this.state.filter !== 0) {
-  //     console.log('in filter if statement')
-  //     this.setState({
-  //       ...this.state,
-  //       filterlist: this.props.adminCardValues.filter(card => card.color = this.filter)
-  //     })
-  //   }
-  //   else
-  //     this.setState({
-  //       ...this.state,
-  //       filterlist: this.props.adminCardValues
-  //     })
-  //     console.log('logging filterlist. = ', this.state.filterlist)
-  // }
-
   setfilter = (event) => {
     console.log('in filter color logging colors', event.target.value)
     this.setState({
@@ -61,14 +44,12 @@ class CardList extends Component {
             </tr>
           </thead>
           <tbody>
-          {window.location.href.split('/').pop() === 'draft' && !this.state.filter ?
-             this.props.adminCardValues
-             .map(item => <CardMapComponent item={item} key={item.card_id} />) : null}
              {/* will render default screen for draft ie name card draft value and show default values.*/}
             {window.location.href.split('/').pop() === 'draft' && this.state.filter ?
              this.props.adminCardValues.filter(card => card.color_name === this.state.filter)
             //  this will show the filter list of cards on the draft screen.
-             .map(item => <CardMapComponent item={item} key={item.card_id} />) : null}
+             .map(item => <CardMapComponent item={item} key={item.card_id} />) : this.props.adminCardValues
+             .map(item => <CardMapComponent item={item} key={item.card_id} />) }
           </tbody>
         </table>
       </div>
