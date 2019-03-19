@@ -25,15 +25,9 @@ class AdminCardValueList extends Component {
 
     handleSubmint = (id) => (event) => {
         console.log('in handlesubmit logging id then parent card id', id, "this.state.cardInfor", this.state.cardInfo.parentCard)
-        // if (this.state.cardInfo.card_value &&  ) {
-            // console.log('in update')
-            // this.props.dispatch({ type: 'PUT_CARD_ADMIN', payload: this.state.cardInfo })
-            // this will update the information on the table. 
-        // } 
         if (this.state.cardInfo.card_value !== this.state.begincard_value){
             console.log('in post')
-            this.props.dispatch({ type: 'POST_CARD_DRAFT_ADMIN', payload: this.state.cardInfo })
-
+            this.props.dispatch({ type: 'PUT_CARD_DRAFT_ADMIN', payload: this.state.cardInfo })
         }
         else {
             console.log("error posting/updating DB Check value to make sure you typed it in")

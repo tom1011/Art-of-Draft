@@ -37,8 +37,7 @@ class CardList extends Component {
                     <thead>
                         <tr>
                             <th>Name</th>
-                            {!this.state.selectedCardId ? <th>Select Card</th> : null}
-                            {this.state.selectedCardId ? <th>Input Change Value</th> : null }
+                            {this.state.selectedCardId ? <th>Input Change Value</th> : <th>Select Card</th> }
                             {this.state.selectedCardId ? <th>Submit</th> : null }
                         </tr>
                     </thead>
