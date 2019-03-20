@@ -9,7 +9,7 @@ function* cardpostDraftAdminSaga(action) {
           url: '/api/admin/alls',
           data: action.payload,
         })
-        yield put({type: 'GET_CARD_VALUE_ADMIN', payload: action.payload.parentCardName})
+        yield put({type: 'GET_CARD_VALUE_ADMIN', payload: {cardname: action.payload.parentCardName}})
     } catch (error) {
       console.log('User get request failed', error);
     }

@@ -43,7 +43,7 @@ class AdminCardValueList extends Component {
         return (
             <tr>
                 <td>{this.props.item.card_name}</td>
-                <td><input type="number" min="0" max="100" step="0.1" value={this.state.cardInfo.card_value} onChange={this.handleChange} placeholder="default card value" /></td>
+                <td><input type="number" min="-100" max="100" step="0.1" value={this.state.cardInfo.card_value} onChange={this.handleChange} placeholder="default card value" /></td>
                 <td><button onClick={this.handleSubmint(this.props.item.card_id)}>Submit</button></td>
             </tr>
         );
