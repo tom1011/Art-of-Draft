@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+// will dynamicly get the values from the DB according to what hero was picked.
+
 function* cardGetSaga(action) {
   try {
     yield console.log('in saga get all card data admin logging action.payload', action.payload)

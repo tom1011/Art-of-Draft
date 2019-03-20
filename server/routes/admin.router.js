@@ -83,8 +83,9 @@ router.put('/draft', (req, res) => {
 router.post('/all', (req, res) => {
     // includes.
     console.log(" in admin.router /all logging req.body,", req.body.cardname.toLowerCase()); 
-    if (tableList.includes(req.body.cardname.toLowerCase())) {
-    const queryText = `SELECT "admin_table".${req.body.cardname.toLowerCase()},
+    const columnname = (req.body.cardname.toLowerCase())
+    if (tableList.includes(columnname)) {
+    const queryText = `SELECT "admin_table".${columnname},
     "card_table"."id" as "card_id",
     "card_table"."card_name",
     "card_table"."type",
@@ -109,26 +110,25 @@ router.post('/all', (req, res) => {
     }
 });
 
-
-
-router.put('all', (req, res) => {
-    console.log('inn all put ie update card values going to test.')
-    // if (tableList.includes(req.body.cardname.toLowerCase())) {
+router.put('/alls', (req, res) => {
+    console.log('inn all put ie update card values going to test. logging ', req.body.parentCardName.toLowerCase())
+    const columnname = req.body.parentCardName.toLowerCase();
+    if (tableList.includes(columnname)) {
         const postdefault = req.body;
         const queryText = `UPDATE "admin_table" 
-        SET $1 = $2
-        WHERE "card_id" = $3`
-        const queryValues = [postdefault.parentCardName.toLowerCase(), postdefault.card_value, postdefault.id]
+        SET ${columnname} = $1
+        WHERE "card_id" = $2`
+        const queryValues = [postdefault.card_value, postdefault.id]
         pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
             console.log('Error completing POST shelf query', err);
             res.sendStatus(500);
         })
-    // }
-    // else {
-    //     res.send(500)
-    // }
+    }
+    else {
+        res.sendStatus(500);
+    }
 })
 
 module.exports = router;

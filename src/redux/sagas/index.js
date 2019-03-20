@@ -8,6 +8,7 @@ import postAdminValues from './PostCardAdminSaga';
 import putAdminValues from './putCardAdminSaga';
 import putDraftAdminValues from './PutDraftAdminValues';
 import getAllCardValues from './getAllCardData';
+import putAllCardValues from './putALLCardValues';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -26,6 +27,7 @@ export default function* rootSaga() {
     postAdminValues(),
     putAdminValues(),
     putDraftAdminValues(),
-    getAllCardValues(),
+    getAllCardValues(),// dynamicly gets info from DB.
+    putAllCardValues(), // dynamicly post to DB according to hero selected.
   ]);
 }
