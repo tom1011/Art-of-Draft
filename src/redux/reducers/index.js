@@ -4,6 +4,7 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import cards from './setCardReducer';
 import adminCardValues from './setAdminCardReducer';
+import allCardValues from './setCardValuesReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   cards, // set the array of cards.
   adminCardValues, // gets the default admin card values from DB
+  allCardValues, // gets all the information from admin table.
 });
 
 export default rootReducer;

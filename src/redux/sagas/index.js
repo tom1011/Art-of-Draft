@@ -7,6 +7,7 @@ import getAdminValues from './getCardAdminSaga';
 import postAdminValues from './PostCardAdminSaga';
 import putAdminValues from './putCardAdminSaga';
 import putDraftAdminValues from './PutDraftAdminValues';
+import getAllCardValues from './getAllCardData';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     postAdminValues(),
     putAdminValues(),
     putDraftAdminValues(),
+    getAllCardValues(),
   ]);
 }

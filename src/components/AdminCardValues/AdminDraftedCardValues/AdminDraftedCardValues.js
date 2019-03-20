@@ -15,15 +15,16 @@ class CardList extends Component {
     }
 
     getCards = () => {
-        this.props.dispatch({ type: 'GET_CARDS' });
-        this.props.dispatch({ type: 'GET_ADMIN_VALUES' });
+        this.props.dispatch({ type: 'GET_ADMIN_VALUES' });// only get the default card values/card info
     }
+
     handleSelect= (cardid, cardname) => (event) =>{
-        console.log('logging id then name', cardid, cardname)
+        console.log('logging id then name', cardname)
         this.setState({
             selectedCardId: cardid,
             selectedCardName: cardname,
         })
+        this.props.dispatch({ type: 'GET_CARD_VALUE_ADMIN' ,payload: {cardname}});// will get all the card values
     }
 
     render() {
@@ -41,8 +42,9 @@ class CardList extends Component {
                             {this.state.selectedCardId ? <th>Submit</th> : null }
                         </tr>
                     </thead>
+                    {/* allCardValues */}
                     <tbody>
-                        {this.state.selectedCardId ? this.props.adminCardValues.map(item => <AdminDraftMapComponent item={item}
+                        {this.state.selectedCardId ? this.props.allCardValues.map(item => <AdminDraftMapComponent item={item}
                                  key = {item.card_id} 
                                  handleSelect={this.handleSelect}
                                  parentCardId = {this.state.selectedCardId}

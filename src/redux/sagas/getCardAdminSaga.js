@@ -6,7 +6,7 @@ function* cardGetSaga() {
   try {
     const cardInfo = yield axios({
         method: 'GET',
-        url: '/api/admin/'
+        url: '/api/admin/default'
       })
       yield put({type: 'SET_CARD_ADMIN', payload: cardInfo.data})
   } catch (error) {
