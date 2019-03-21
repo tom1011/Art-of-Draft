@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListComponent from '../CardListComponent/CardListComponent';
 import CurrentDrafted from '../DraftSelected/DraftSelectedList';
+import './DraftPage.css'
 
 class DraftPage extends Component {
   state= {
@@ -34,10 +35,12 @@ toggleSelectfunction = () => {
   render() {
     return (
       <div>
-        <p>Draft plage set up</p>
+        <p>Draft page set up</p>
+        <div id='leftBox'>
         <button onClick={this.toggleSelectfunction}>Add Drafted Card</button>
         { this.state.toggleSelect ? <CurrentDrafted  handleSelectDraft= {this.handleSelectDraft} selectedCardId= {this.state.cardSelected.id} selectedCardName={this.state.cardSelected.name}/> : null} 
-        <div>
+        </div>
+        <div id = 'rightBox'>
         <ListComponent cardSelected={this.state.cardSelected}/>
         </div>
       </div>
