@@ -2,13 +2,14 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
-import getCardSaga from './getCardSaga';
+import getUserCardSaga from './getUserCardSaga';
 import getAdminValues from './getCardAdminSaga';
 import postAdminValues from './PostCardAdminSaga';
 import putAdminValues from './putCardAdminSaga';
 import putDraftAdminValues from './PutDraftAdminValues';
 import getAllCardValues from './getAllCardData';
 import putAllCardValues from './putALLCardValues';
+import userPostCardValues from './UserPostCardDate';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,12 +23,13 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
-    getCardSaga(),// gets the cards from DB
+    getUserCardSaga(),// gets the user Cards from DB.
     getAdminValues(), // get default card values from DB
-    postAdminValues(),
-    putAdminValues(),
-    putDraftAdminValues(),
+    postAdminValues(),// set default card values for admin.
+    putAdminValues(),// edits default card values for admin.
+    putDraftAdminValues(),// default card values put
     getAllCardValues(),// dynamicly gets info from DB.
     putAllCardValues(), // dynamicly post to DB according to hero selected.
+    userPostCardValues(),
   ]);
 }

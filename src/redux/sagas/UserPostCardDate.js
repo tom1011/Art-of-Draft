@@ -5,19 +5,18 @@ function* cardGetAdminSaga(action) {
     try {
         yield console.log('admin get saga', action.payload)
        yield axios({
-          method: 'PUT',
-          url: '/api/admin/draft',
+          method: 'POST',
+          url: '/api/card/userpost',
           data: action.payload,
         })
-        yield put({type: 'GET_ADMIN_VALUES'})
+        yield put({type: 'GET_USER_CARDS', payload: {user_id: action.payload.user_id}})
     } catch (error) {
       console.log('User get request failed', error);
     }
   }
-  // draft is default card values not dynamic changing.
   
   function* userSaga() {
-    yield takeLatest('PUT_CARD_DRAFT_ADMIN', cardGetAdminSaga);
+    yield takeLatest('POST_USER_CARD_VALES', cardGetAdminSaga);
   }
   
   export default userSaga;

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
-import cards from './setCardReducer';
+import usercards from './setCardReducer';
 import adminCardValues from './setAdminCardReducer';
 import allCardValues from './setCardValuesReducer';
 
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
-  cards, // set the array of cards.
+  usercards, // set the array of cards.
   adminCardValues, // gets the default admin card values from DB
   allCardValues, // gets all the information from admin table.
 });

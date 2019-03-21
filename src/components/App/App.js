@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import DraftPage from '../DraftPage/DraftPage';
 import AdminDefaultCardValuePage from '../AdminCardValues/AdminCardValues';
 import AdminDefaultDraftCardValuePage from '../AdminCardValues/AdminDraftedCardValues/AdminDraftedCardValues';
+import userSetDefault from '../UserSetValuesPage/UserSetValues';
 
 import './App.css';
 
@@ -72,6 +73,11 @@ class App extends Component {
               exact
               path="/adminDraftDefault"
               component={AdminDefaultDraftCardValuePage}
+            />
+            <ProtectedRoute
+              exact
+              path="/userSetDefault"
+              component={userSetDefault}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
