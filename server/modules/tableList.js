@@ -1,4 +1,11 @@
-let tableList = ['kanna', 'tinker', 'sniper', 'lycan', 'axe', 'luna', 'beastmaster', 'omniknight', 'bristleback', 'timbersaw', 'earthshaker', 'enchantress', 'venomancer', 
+let tableList = ['kanna', 
+'tinker', 
+'sniper', 
+'lycan', 
+'axe', 
+'luna', 
+'beastmaster', 
+'omniknight', 'bristleback', 'timbersaw', 'earthshaker', 'enchantress', 'venomancer', 
 'zeus',
 'chen',
 'mazzie',
@@ -27,6 +34,7 @@ let tableList = ['kanna', 'tinker', 'sniper', 'lycan', 'axe', 'luna', 'beastmast
 'ogre magi',
 'sorla khan',
 'legion commander',
-'drow ranger'];
+'drow ranger',
+'lich'];
 
 module.exports = tableList

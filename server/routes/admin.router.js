@@ -82,22 +82,21 @@ router.put('/draft', (req, res) => {
 
 router.post('/all', (req, res) => {
     // includes.
-    console.log(" in admin.router /all logging req.body,", req.body.cardname.toLowerCase()); 
+    console.log(" in admin.router /all logging req.body,", req.body.cardname.toLowerCase());
     const columnname = (req.body.cardname.toLowerCase())
     if (tableList.includes(columnname)) {
-    const queryText = `SELECT "admin_table".${columnname},
+    const queryText = `SELECT "admin_table".[${columnname}],
     "card_table"."id" as "card_id",
     "card_table"."card_name",
     "card_table"."type",
     "card_table"."rarity",
     "color"."color_name", 
-    "card_table"."img_url"
-   FROM "card_table"
+    "card_table"."img_url" FROM "card_table"
    JOIN "color" ON "color"."id" = "card_table"."color_id"
     LEFT JOIN "admin_table"
      ON "card_table"."id" = "admin_table"."card_id" 
     WHERE "card_table"."type" = 'Hero'
-    ORDER BY "admin_table"."default_value" DESC;`
+    ORDER BY "admin_table"."default_value" DESC;`;
     pool.query(queryText)
         .then((result) => { res.send(result.rows); })
         .catch((err) => {
