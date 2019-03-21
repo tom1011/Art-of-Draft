@@ -10,6 +10,7 @@ import putDraftAdminValues from './PutDraftAdminValues';
 import getAllCardValues from './getAllCardData';
 import putAllCardValues from './putALLCardValues';
 import userPostCardValues from './UserPostCardDate';
+import userPutCardValues from './userPutCardDraftValues';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,13 +24,14 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
-    getUserCardSaga(),// gets the user Cards from DB.
+    getUserCardSaga(), // gets the user Cards from DB.
     getAdminValues(), // get default card values from DB
-    postAdminValues(),// set default card values for admin.
-    putAdminValues(),// edits default card values for admin.
-    putDraftAdminValues(),// default card values put
-    getAllCardValues(),// dynamicly gets info from DB.
+    postAdminValues(), // set default card values for admin.
+    putAdminValues(), // edits default card values for admin.
+    putDraftAdminValues(), // default card values put
+    getAllCardValues(), // dynamicly gets info from DB.
     putAllCardValues(), // dynamicly post to DB according to hero selected.
-    userPostCardValues(),
+    userPostCardValues(), // post the user card values to DB
+    userPutCardValues(), // updates the user card values in DB
   ]);
 }

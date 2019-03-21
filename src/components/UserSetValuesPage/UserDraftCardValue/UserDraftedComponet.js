@@ -11,7 +11,8 @@ class AdminCardValueList extends Component {
             card_value: this.props.item[this.props.parentCardName.toLowerCase()],
             begincard_value: this.props.item.default_value,
             parentCard: this.props.parentCardId,
-            parentCardName: this.props.parentCardName
+            parentCardName: this.props.parentCardName,
+            user_id: this.props.user.id
         }
     }
 
@@ -27,15 +28,20 @@ class AdminCardValueList extends Component {
     }
 
     handleSubmint = (id) => (event) => {
-        console.log('in handlesubmit logging id then parent card id', id, "this.state.cardInfor", this.state.cardInfo.parentCard)
-        if (this.state.cardInfo.card_value !== this.state.begincard_value){
-            console.log('in post')
-            this.props.dispatch({ type: 'PUT_ALL_CARD_ADMIN', payload: this.state.cardInfo })
+        // console.log('in handlesubmit logging id then parent card id', id, "this.state.cardInfor", this.state.cardInfo.parentCard)
+            // console.log('in handlesubmit', id)
+            // need to do a put/post here. put updates post adds.
+            if (this.state.cardInfo.begincard_value !== this.state.card_value && this.props.item.isModifided) {
+                // put
+                this.props.dispatch({ type: 'PUT_USER_CARD_VALUES', payload: this.state.cardInfo })
+            } else if (this.state.cardInfo.card_value){
+                //post
+                this.props.dispatch({ type: 'POST_USER_CARD_VALES', payload: this.state.cardInfo })
+            }
+            else {
+                console.log("error posting/updating DB Check value to make sure you typed it in")
+            }
         }
-        // else {
-        //     console.log("error posting/updating DB Check value to make sure you typed it in")
-        // }
-    }
 
     render() {
         return (

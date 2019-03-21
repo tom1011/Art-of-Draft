@@ -27,8 +27,9 @@ class AdminCardValueList extends Component {
         // console.log('in handlesubmit', id)
         // need to do a put/post here. put updates post adds.
         if (this.state.cardInfo.begincard_value !== this.state.card_value && this.props.item.isModifided) {
+            console.log('in if statment handle submit ie the update for default values.')
             // put
-            this.props.dispatch({ type: '', payload: this.state.cardInfo })
+            this.props.dispatch({ type: 'PUT_USER_CARD_VALUES', payload: this.state.cardInfo })
         } else if (this.state.cardInfo.card_value){
             //post
             this.props.dispatch({ type: 'POST_USER_CARD_VALES', payload: this.state.cardInfo })

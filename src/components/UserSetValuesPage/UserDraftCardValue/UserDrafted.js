@@ -29,18 +29,15 @@ class CardList extends Component {
     }
 
     modifyItem = (item, parentcard) => {
-        console.log('in modifyItem for selected card.')
         for (let i = 0; i < this.props.usercards.length; i++){
             if (!this.props.usercards[i].is_default &&
                  this.props.usercards[i].card_id === item.card_id
                   && this.props.parent_card_id === this.state.parentCardId){
-                console.log('in if statement in for loop this should only log once for kanna.')
                 item = {
                     ...item,
                     [parentcard]: this.props.usercards[i].user_card_value,
                     isModifided: true,
                 }
-                console.log('in if statment logging modified item hopefuly.', item)
             }
         }
         return item
