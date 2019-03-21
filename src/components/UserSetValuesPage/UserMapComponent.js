@@ -15,7 +15,7 @@ class AdminCardValueList extends Component {
 
     handleChange = (event) => {
         // console.log('in admin handle change function', event.target.value)
-        console.log(this.state.cardInfo)
+        // console.log(this.state.cardInfo)
         this.setState({
             cardInfo: {
                 ...this.state.cardInfo,

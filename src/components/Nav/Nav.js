@@ -34,6 +34,9 @@ const Nav = (props) => (
           <Link className="nav-link" to="/userSetDefault">
             user default Value
           </Link>
+          <Link className="nav-link" to="/userSetDraftValues">
+            user draft Value
+          </Link> 
           <LogOutButton className="nav-link"/>
         </>
       )}

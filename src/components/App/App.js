@@ -20,6 +20,7 @@ import DraftPage from '../DraftPage/DraftPage';
 import AdminDefaultCardValuePage from '../AdminCardValues/AdminCardValues';
 import AdminDefaultDraftCardValuePage from '../AdminCardValues/AdminDraftedCardValues/AdminDraftedCardValues';
 import userSetDefault from '../UserSetValuesPage/UserSetValues';
+import userSetDraftValues from '../UserSetValuesPage/UserDraftCardValue/UserDrafted';
 
 import './App.css';
 
@@ -78,6 +79,11 @@ class App extends Component {
               exact
               path="/userSetDefault"
               component={userSetDefault}
+            />
+            <ProtectedRoute
+              exact
+              path="/userSetDraftValues"
+              component={userSetDraftValues}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
