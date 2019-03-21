@@ -22,10 +22,42 @@ class CardList extends Component {
   getCards = () => {
     this.props.dispatch({ type: 'GET_ADMIN_VALUES' });// this is base card values ie unchanging.
     this.props.dispatch({ type: 'GET_CARDS' });// this will get the user card info
+    this.props.dispatch({ type: 'GET_USER_CARDS', payload: {user_id: this.props.user.id}})
+  }
+
+  modifyItem = (item) => {
+
+    for (let i = 0; i < this.props.usercards.length; i++){  
+      if (this.props.usercards[i].is_default && 
+        item.card_id === this.props.usercards[i].card_id) {
+          item={
+            ...item,
+            default_value: this.props.usercards[i].user_card_value
+          }
+      }
+    }
+    
+    if (this.props.cardSelected.id){
+      for (let i = 0; i < this.props.usercards.length; i++){  
+        if (!this.props.usercards[i].is_default 
+          && this.props.usercards[i].parent_card_id === this.props.cardSelected.id
+          && this.props.usercards[i].card_id === item.card_id){
+          // cardSelected.id
+          let userNumber = Number(this.props.usercards[i].user_card_value);
+          let defaultNumberuser = (Number(item.default_value));
+          let tempvar = defaultNumberuser + userNumber;
+          item = {
+            ...item,
+            default_value: tempvar,
+          }
+        } 
+        }
+    }
+
+    return item
   }
 
   render() {
-    console.log(this.props.adminCardValues.color_name)
     return (
       <div>
         <select onChange={this.setfilter}>
@@ -48,8 +80,8 @@ class CardList extends Component {
             {window.location.href.split('/').pop() === 'draft' && this.state.filter ?
              this.props.adminCardValues.filter(card => card.color_name === this.state.filter)
             //  this will show the filter list of cards on the draft screen.
-             .map(item => <CardMapComponent item={item} key={item.card_id} />) : this.props.adminCardValues
-             .map(item => <CardMapComponent item={item} key={item.card_id} />) }
+             .map(item => <CardMapComponent item={this.modifyItem(item)} key={item.card_id} />) : this.props.adminCardValues
+             .map(item => <CardMapComponent item={this.modifyItem(item)} key={item.card_id} />) }
           </tbody>
         </table>
       </div>

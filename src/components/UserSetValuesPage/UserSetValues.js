@@ -18,6 +18,7 @@ class CardList extends Component {
     modifyItem = (item) => {
         for (let i = 0; i < this.props.usercards.length; i++){
             if (this.props.usercards[i].is_default && this.props.usercards[i].card_id === item.card_id){
+
                 item = {
                     ...item,
                     default_value: this.props.usercards[i].user_card_value,

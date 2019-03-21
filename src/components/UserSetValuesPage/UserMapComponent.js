@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class AdminCardValueList extends Component {
+class CardValueList extends Component {
 
     state = {
         cardInfo: {
@@ -54,4 +54,4 @@ const mapStateToProps = (reduxState) => {
     return reduxState;
 }
 
-export default connect(mapStateToProps)(AdminCardValueList);
+export default connect(mapStateToProps)(CardValueList);
