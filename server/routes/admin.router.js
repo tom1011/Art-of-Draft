@@ -83,9 +83,9 @@ router.put('/draft', (req, res) => {
 router.post('/all', (req, res) => {
     // includes.
     console.log(" in admin.router /all logging req.body,", req.body.cardname.toLowerCase());
-    const columnname = (req.body.cardname.toLowerCase())
+    const columnname = (req.body.cardname.toLowerCase().split(' ').join('_'))
     if (tableList.includes(columnname)) {
-    const queryText = `SELECT "admin_table".[${columnname}],
+    const queryText = `SELECT "admin_table".${columnname},
     "card_table"."id" as "card_id",
     "card_table"."card_name",
     "card_table"."type",
@@ -110,8 +110,8 @@ router.post('/all', (req, res) => {
 });
 
 router.put('/alls', (req, res) => {
-    console.log('inn all put ie update card values going to test. logging ', req.body.parentCardName.toLowerCase())
-    const columnname = req.body.parentCardName.toLowerCase();
+    console.log('inn all put ie update card values going to test. logging ', req.body.parentCardName.toLowerCase().split(' ').join('_'))
+    const columnname = req.body.parentCardName.toLowerCase().split(' ').join('_');
     if (tableList.includes(columnname)) {
         const postdefault = req.body;
         const queryText = `UPDATE "admin_table" 
