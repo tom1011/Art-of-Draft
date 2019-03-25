@@ -2,7 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DraftCardSelector from './DraftSelectedComponent';
 
+import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit,
+    },
+})
+
 class CardList extends Component {
+
+
 
     componentDidMount = () => {
         this.getCards()
@@ -16,19 +26,18 @@ class CardList extends Component {
 
         return (
             <div>
-                
-                {this.props.selectedCardId ? <h1> Selected Card: {this.props.selectedCardName} </h1> : null } 
-                
-                <table>
-                    <thead>
-                    </thead>
+
+                    
                     {/* allCardValues */}
-                    <tbody>
-                        {this.props.selectedCardId ? null : this.props.adminCardValues.map(item => <DraftCardSelector item={item}
-                                    key = {item.card_id} 
-                                    handleSelect={this.props.handleSelectDraft}/>)}
-                    </tbody>
-                </table>    
+                    
+                        
+                            <div>Card: Name</div>
+
+                            {this.props.adminCardValues.map(item => <DraftCardSelector item={item}
+                                key={item.card_id}
+                            handleSelect={this.props.handleSelectDraft} />)}
+                    
+                
             </div>
         );
     }
@@ -38,4 +47,4 @@ const mapStateToProps = (reduxState) => {
     return reduxState;
 }
 
-export default connect(mapStateToProps)(CardList);
+export default connect(mapStateToProps)(withStyles(styles)(CardList));

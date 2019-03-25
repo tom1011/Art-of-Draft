@@ -5,6 +5,7 @@ import user from './userReducer';
 import usercards from './setCardReducer';
 import adminCardValues from './setAdminCardReducer';
 import allCardValues from './setCardValuesReducer';
+import draftedCardList from './draftedCardListreducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   usercards, // set the array of cards.
   adminCardValues, // gets the default admin card values from DB
   allCardValues, // gets all the information from admin table.
+  draftedCardList, // this will store the current drafted card list.
 });
 
 export default rootReducer;

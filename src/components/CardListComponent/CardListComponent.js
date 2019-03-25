@@ -26,7 +26,6 @@ class CardList extends Component {
   }
 
   modifyItem = (item) => {
-
     for (let i = 0; i < this.props.usercards.length; i++){  
       if (this.props.usercards[i].is_default && 
         item.card_id === this.props.usercards[i].card_id) {

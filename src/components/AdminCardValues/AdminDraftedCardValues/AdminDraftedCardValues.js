@@ -45,11 +45,12 @@ class CardList extends Component {
                     {/* allCardValues */}
                     <tbody>
                         {this.state.selectedCardId ? this.props.allCardValues.map(item => <AdminDraftMapComponent item={item}
-                                 key = {item.card_id} 
+                                 key = {item.card_id} // this is the map that shows selected cards
                                  handleSelect={this.handleSelect}
                                  parentCardId = {this.state.selectedCardId}
-                                 parentCardName = {this.state.selectedCardName}/>) : this.props.adminCardValues.map(item => <DraftCardSelector item={item}
-                                    key = {item.card_id} 
+                                 parentCardName = {this.state.selectedCardName}/>) : 
+                                 this.props.adminCardValues.map(item => <DraftCardSelector item={item}
+                                    key = {item.card_id} // so I want to make this a popover/model idk witch.
                                     handleSelect={this.handleSelect}/>)}
                     </tbody>
                 </table>    
