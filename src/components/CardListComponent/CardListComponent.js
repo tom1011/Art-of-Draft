@@ -20,39 +20,17 @@ class CardList extends Component {
   }
 
   getCards = () => {
-    this.props.dispatch({ type: 'GET_ADMIN_VALUES' });// this is base card values ie unchanging.
-    this.props.dispatch({ type: 'GET_CARDS' });// this will get the user card info
-    this.props.dispatch({ type: 'GET_USER_CARDS', payload: {user_id: this.props.user.id}})
+    // this is the dispatches in order of what I want to hit.
+    // this.props.dispatch({ type: 'GET_ADMIN_VALUES' });// this is base card values ie unchanging.
+    // this.props.dispatch({ type: 'GET_USER_CARDS', payload: {user_id: this.props.user.id}})
+    // this.props.dispatch({ type: 'DRAFTED_CARD_VALUES_DEFAULT', payload: {user: this.props.usercards , admin: this.props.adminCardValues} });// this will get the user card info
+
+  // this is using the sage I set up
+    // this.props.dispatch({type: 'DRAFTED_CARD_VALUES_DEFAULT_SAGA', payload: {user_id: this.props.user.id}})
   }
 
   modifyItem = (item) => {
-    for (let i = 0; i < this.props.usercards.length; i++){  
-      if (this.props.usercards[i].is_default && 
-        item.card_id === this.props.usercards[i].card_id) {
-          item={
-            ...item,
-            default_value: this.props.usercards[i].user_card_value
-          }
-      }
-    }
-    
-    if (this.props.cardSelected.id){
-      for (let i = 0; i < this.props.usercards.length; i++){  
-        if (!this.props.usercards[i].is_default 
-          && this.props.usercards[i].parent_card_id === this.props.cardSelected.id
-          && this.props.usercards[i].card_id === item.card_id){
-          // cardSelected.id
-          let userNumber = Number(this.props.usercards[i].user_card_value);
-          let defaultNumberuser = (Number(item.default_value));
-          let tempvar = defaultNumberuser + userNumber;
-          item = {
-            ...item,
-            default_value: tempvar,
-          }
-        } 
-        }
-    }
-
+    // selectedCardValues
     return item
   }
 

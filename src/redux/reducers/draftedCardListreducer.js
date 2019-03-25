@@ -1,9 +1,9 @@
 const draftedCardList = (state = [], action) => {
     switch(action.type) {
       case 'DRAFTED_CARD_LIST':
-      console.log('drafted card list hit', action.payload)
-      console.log('drafted card list hit logging state', action.payload)
       return [...state, action.payload]
+      case 'DRAFTED_CARD_LIST_CLEAR':
+      return []
       default: 
       return state;
     }

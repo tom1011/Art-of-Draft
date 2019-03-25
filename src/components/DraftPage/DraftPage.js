@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ListComponent from '../CardListComponent/CardListComponent';
+import ListCardsComponent from '../CardListComponent/CardListComponent';
 import CurrentDrafted from '../DraftSelected/DraftSelectedList';
 import './DraftPage.css'
 
@@ -18,25 +18,14 @@ const styles = theme => ({
 
 class DraftPage extends Component {
   state = {
-    cardSelected: {
-      id: '',
-      name: '',
-    },
     toggleSelect: false,
     anchorEl: null,
   }
 
   handleSelectDraft = (cardid, cardname) => (event) => {
-    console.log(this.props.draftedCardList , 'logging the reduc of this.props.drafted')
-    this.setState({
-      ...this.state,
-      cardSelected: {
-        id: cardid,
-        name: cardname,
-      },
-    })
     this.props.dispatch({type: 'DRAFTED_CARD_LIST', payload: {cardname: cardname, cardid: cardid}})
     this.props.dispatch({ type: 'GET_CARD_VALUE_ADMIN', payload: { cardname } });// will get all the card values with the specified name.
+    // this.props.dispatch({type: '', payload: this.props.selectedCardValues})
   }
 
   toggleSelectfunction = (event) => {
@@ -53,22 +42,37 @@ class DraftPage extends Component {
       anchorEl: null,
     })
   }
+  
+  clearStates = () => {
+    this.props.dispatch({type: 'DRAFTED_CARD_LIST_CLEAR'})
+    this.setState({
+        toggleSelect: false,
+        anchorEl: null,
+    })
+  }
 
-
+componentDidMount = () => {
+  this.getCards()
+}
+  getCards =() => {
+    // this is the dispatches in order of what I want to hit.
+    // this.props.dispatch({ type: 'GET_ADMIN_VALUES' });// this is base card values ie unchanging.
+    // this.props.dispatch({ type: 'GET_USER_CARDS', payload: {user_id: this.props.user.id}})
+    // this.props.dispatch({ type: 'DRAFTED_CARD_VALUES_DEFAULT', payload: {user: this.props.usercards , admin: this.props.adminCardValues} });// this will get the user card info
+    this.props.dispatch({ type: 'DRAFTED_CARD_VALUES_DEFAULT_SAGA' ,payload: {user_id: this.props.user.id} })
+  }
 
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    console.log('logging this.props.draftedCard list, ' , this.props.draftedCardList)
 
     return (
       
       <div>
         <p>Draft page set up</p>
         <div id='leftBox'>
-        
+        {/*  bellow button is to select/add another card to the drafted list. */}
         {this.props.draftedCardList.length >= 1 ? this.props.draftedCardList.map(item => <div>{item.cardname}</div>): null }
-
         { this.props.draftedCardList.length >= 5 ? null : <>
           <Button onClick={this.toggleSelectfunction}
             aria-owns={open ? 'simplepopover' : undefined}
@@ -87,19 +91,18 @@ class DraftPage extends Component {
             transformOrigin={{
               vertical: 'top',
               horizontal: 'center',
-            }}
-
-            
+            }}  
           >
+          
 
-            <CurrentDrafted handleSelectDraft={this.handleSelectDraft} selectedCardId={this.state.cardSelected.id} selectedCardName={this.state.cardSelected.name} />
-
+            <CurrentDrafted handleSelectDraft={this.handleSelectDraft}/>
           </Popover> </>}
+          {/* end adding card to list */}
         </div>
         <div id='rightBox'>
-          <ListComponent cardSelected={this.state.cardSelected} />
+          <ListCardsComponent />
         </div>
-        <Button variant="contained" color='primary'>
+        <Button variant="contained" color='primary' onClick={this.clearStates}>
           New Draft
         </Button>
       </div>

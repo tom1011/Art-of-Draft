@@ -4,6 +4,7 @@ const router = express.Router();
 const tableList = require('../modules/tableList')
 
 router.get('/default', (req, res) => {
+    console.log('in default api route')
     const queryText = `SELECT "admin_table"."default_value",
     "card_table"."id" as "card_id",
     "card_table"."card_name" ,

@@ -26,7 +26,7 @@ const Nav = (props) => (
   {/* <div className="nav"> */}
   <Button color='primary'  variant="contained" href="home" >
 
-      <h2 className>Art of Draft</h2>
+      <h2>Art of Draft</h2>
     </Button>
     <div>
     <Button variant="contained" color="secondary" href="#/home">

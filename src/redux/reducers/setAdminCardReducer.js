@@ -6,5 +6,6 @@ const cardInfo = (state = [], action) => {
       return state;
     }
   }
-
+ 
+  // this has the admin default card values.
   export default cardInfo;
