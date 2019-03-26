@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import UserMapComponent from './UserMapComponent';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 class CardList extends Component {
 
@@ -32,6 +34,15 @@ class CardList extends Component {
     render() {
         return (
             <div>
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ minHeight: '100vh' }}
+                >
+                    <Grid item xs={3}>
                 <table>
                     <thead>
                         <tr>
@@ -40,12 +51,15 @@ class CardList extends Component {
                             <th>Submit Button</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
                         {this.props.adminCardValues.map(item => <UserMapComponent 
                          item={this.modifyItem(item)}
                           key={item.card_id}/>)}
                     </tbody>
                 </table>
+                    </Grid>
+                </Grid>
             </div>
         );
     }

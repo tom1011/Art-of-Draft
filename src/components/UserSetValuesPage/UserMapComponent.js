@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import Button from '@material-ui/core/Button';
 class CardValueList extends Component {
 
     state = {
@@ -43,9 +43,8 @@ class CardValueList extends Component {
             <tr>
                 <td>{this.props.item.card_name}</td>
                 <td><input type="number" min="-100" max="100" step="0.1" value={this.state.cardInfo.card_value} onChange={this.handleChange} placeholder="default card value" /></td>
-                <td><button onClick={this.handleSubmint(this.props.item.card_id)}>Submit</button></td>
+                <td><Button variant="contained" color="primary" onClick={this.handleSubmint(this.props.item.card_id)}>Submit</Button></td>
             </tr>
-
         );
     }
 }

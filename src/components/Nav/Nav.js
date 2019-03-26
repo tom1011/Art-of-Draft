@@ -47,16 +47,17 @@ const Nav = (props) => (
             Info Page
           
           </Button>
+          
+          {props.user.clearance_level > 5 && (
+            <>
           <Button variant="contained" color="secondary" href="#/adminDefault">
-          
             admin Default Values Page
-          
           </Button>
           <Button variant="contained" color="secondary" href="#/adminDraftDefault" >
-          
             admin Draft Value
-          
           </Button>
+          </>)}
+          
           <Button variant="contained" color="secondary" href="#/userSetDefault">
     
             user default Value
