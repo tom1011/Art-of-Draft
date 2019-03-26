@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
-
 class AdminCardValueList extends Component {
 
     state = {
-        // cardInfo: {
-        //     id: this.props.item.card_id,
-            // card_value: this.props.item[this.props.parentCardName.toLowerCase()],
-        //     begincard_value: this.props.item.default_value,
-        //     parentCard: this.props.parentCardId,
-        //     parentCardName: this.props.parentCardName
-        // }
+        
     }
 
     handleChange = (event) => {
@@ -43,27 +35,27 @@ class AdminCardValueList extends Component {
 
     getCards = () => {
         console.log('in the get cards dispatch')
-    this.props.dispatch({ type: 'GET_CARD_VALUE_ADMIN' ,payload: {cardname: this.props.selectedCardName}})
+        this.props.dispatch({ type: 'GET_CARD_VALUE_ADMIN', payload: { cardname: this.props.selectedCardName } })
     }
 
     render() {
 
         if (this.props.selectedCardValues) {
             console.log(this.props.selectedCardValues)
-        return (
-            <>
-                {this.props.selectedCardValues.map(item =>
-                <tr key={item.card_id}>
-                    <td>{item.card_name}</td>
-                    {console.log('logging this.', item)}
-                    <td><input type="number" min="-100" max="100" step="0.1" value={item[this.props.selectedCardName.toLowerCase().split(' ').join('_')]} onChange={this.handleChange} placeholder="default card value" /></td>
-                    <td><button onClick={this.handleSubmint(item.card_id)}>Submit</button></td>
-                </tr>
-                )}
-            </>
-        );
+            return (
+                <>
+                    {this.props.selectedCardValues.map(item =>
+                        <tr key={item.card_id}>
+                            <td>{item.card_name}</td>
+                            {console.log('logging this.', item)}
+                            <td><input type="number" min="-100" max="100" step="0.1" value={item[this.props.selectedCardName.toLowerCase().split(' ').join('_')]} onChange={this.handleChange} placeholder="default card value"/></td>
+                            <td><button onClick={this.handleSubmint(item.card_id)}>Submit</button></td>
+                        </tr>
+                    )}
+                </>
+            );
+        }
     }
-}
 }
 
 const mapStateToProps = (reduxState) => {

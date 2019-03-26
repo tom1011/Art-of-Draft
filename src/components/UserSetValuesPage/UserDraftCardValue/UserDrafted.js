@@ -44,7 +44,7 @@ class CardList extends Component {
     }
 
     render() {
-
+        console.log('this is when the user drafted page is rendering')
         return (
             <div>
                 
@@ -60,7 +60,7 @@ class CardList extends Component {
                     </thead>
                     {/* allCardValues */}
                     <tbody>
-                        {this.state.selectedCardId ? this.props.allCardValues.map(item => <UserDraftMapComponent item={this.modifyItem(item, this.state.selectedCardName.toLowerCase())}
+                        {this.state.selectedCardId ? this.props.selectedCardValues.map(item => <UserDraftMapComponent item={this.modifyItem(item, this.state.selectedCardName.toLowerCase())}
                                  key = {item.card_id} 
                                  handleSelect={this.handleSelect}
                                  parentCardId = {this.state.selectedCardId}
