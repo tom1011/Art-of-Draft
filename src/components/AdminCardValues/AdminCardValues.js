@@ -21,33 +21,33 @@ class CardList extends Component {
         return (
             <div>
                 <Grid
-  container
-  spacing={0}
-  direction="column"
-  alignItems="center"
-  justify="center"
-  style={{ minHeight: '100vh' }}
->
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ minHeight: '100vh' }}
+                >
 
-  <Grid item xs={3}>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>input value</th>
-                            <th>Submit Button</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody>
-                        {this.props.adminCardValues.map(item => <AdminMapComponent item={item} key={item.card_id}/>)}
-                    </tbody>
-                    
-                </table>
-                </Grid>
+                    <Grid item xs={3}>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>input value</th>
+                                    <th>Submit Button</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {this.props.adminCardValues.map(item => <AdminMapComponent item={item} key={item.card_id} />)}
+                            </tbody>
+
+                        </table>
+                    </Grid>
                 </Grid>
             </div>
-            
+
         );
     }
 }

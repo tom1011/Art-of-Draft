@@ -25,7 +25,7 @@ class DraftPage extends Component {
   handleSelectDraft = (cardid, cardname) => (event) => {
     this.props.dispatch({type: 'DRAFTED_CARD_LIST', payload: {cardname: cardname, cardid: cardid}})
     this.props.dispatch({ type: 'GET_CARD_VALUE_ADMIN', payload: { cardname } });// will get all the card values with the specified name.
-    // this.props.dispatch({type: '', payload: this.props.selectedCardValues})
+    this.props.dispatch({type: 'DRAFTED_CARD_VALUES_DRAFTED_CARD', payload: {userId: {user_id: this.props.user.id}, adminCardValues: {cardname: cardname}  }})
   }
 
   toggleSelectfunction = (event) => {
@@ -55,10 +55,6 @@ componentDidMount = () => {
   this.getCards()
 }
   getCards =() => {
-    // this is the dispatches in order of what I want to hit.
-    // this.props.dispatch({ type: 'GET_ADMIN_VALUES' });// this is base card values ie unchanging.
-    // this.props.dispatch({ type: 'GET_USER_CARDS', payload: {user_id: this.props.user.id}})
-    // this.props.dispatch({ type: 'DRAFTED_CARD_VALUES_DEFAULT', payload: {user: this.props.usercards , admin: this.props.adminCardValues} });// this will get the user card info
     this.props.dispatch({ type: 'DRAFTED_CARD_VALUES_DEFAULT_SAGA' ,payload: {user_id: this.props.user.id} })
   }
 
@@ -100,7 +96,7 @@ componentDidMount = () => {
           {/* end adding card to list */}
         </div>
         <div id='rightBox'>
-          <ListCardsComponent />
+          <ListCardsComponent numberCards={this.state.numberCards}/>
         </div>
         <Button variant="contained" color='primary' onClick={this.clearStates}>
           New Draft

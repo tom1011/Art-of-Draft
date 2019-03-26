@@ -15,26 +15,9 @@ class CardList extends Component {
     })
   }
 
-  componentDidMount = () => {
-    this.getCards()
-  }
-
-  getCards = () => {
-    // this is the dispatches in order of what I want to hit.
-    // this.props.dispatch({ type: 'GET_ADMIN_VALUES' });// this is base card values ie unchanging.
-    // this.props.dispatch({ type: 'GET_USER_CARDS', payload: {user_id: this.props.user.id}})
-    // this.props.dispatch({ type: 'DRAFTED_CARD_VALUES_DEFAULT', payload: {user: this.props.usercards , admin: this.props.adminCardValues} });// this will get the user card info
-
-  // this is using the sage I set up
-    // this.props.dispatch({type: 'DRAFTED_CARD_VALUES_DEFAULT_SAGA', payload: {user_id: this.props.user.id}})
-  }
-
-  modifyItem = (item) => {
-    // selectedCardValues
-    return item
-  }
-
   render() {
+    console.log('in chiled component')
+    console.log(this.props.numberCards)
     return (
       <div>
         <select onChange={this.setfilter}>
@@ -55,10 +38,10 @@ class CardList extends Component {
           <tbody>
              {/* will render default screen for draft ie name card draft value and show default values.*/}
             {window.location.href.split('/').pop() === 'draft' && this.state.filter ?
-             this.props.adminCardValues.filter(card => card.color_name === this.state.filter)
+             this.props.draftedCardValues.filter(card => card.color_name === this.state.filter)
             //  this will show the filter list of cards on the draft screen.
-             .map(item => <CardMapComponent item={this.modifyItem(item)} key={item.card_id} />) : this.props.adminCardValues
-             .map(item => <CardMapComponent item={this.modifyItem(item)} key={item.card_id} />) }
+             .map(item => <CardMapComponent item={item} key={item.card_id} />) : this.props.draftedCardValues
+             .map(item => <CardMapComponent item={item} key={item.card_id} />) }
           </tbody>
         </table>
       </div>

@@ -5,7 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* cardGetSaga(action) {
   try {
-    yield console.log('in saga get all card data admin logging action.payload', action.payload)
+    console.log('get all card values admin was hit.', action.payload)
     const cardInfo = yield axios({
         method: 'POST',
         url: '/api/admin/all',

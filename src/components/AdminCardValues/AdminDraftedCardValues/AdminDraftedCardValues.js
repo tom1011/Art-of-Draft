@@ -16,6 +16,9 @@ class CardList extends Component {
 
     getCards = () => {
         this.props.dispatch({ type: 'GET_ADMIN_VALUES' });// only get the default card values/card info
+        if (this.state.selectedCardId){
+            this.props.dispatch({ type: 'GET_CARD_VALUE_ADMIN' ,payload: {cardname: this.state.selectedCardName}})
+        }
     }
 
     handleSelect= (cardid, cardname) => (event) =>{
@@ -28,7 +31,8 @@ class CardList extends Component {
     }
 
     render() {
-
+        // if (!this.state.selectedCardId || this.props.allCardValues)
+        
         return (
             <div>
                 
@@ -44,13 +48,12 @@ class CardList extends Component {
                     </thead>
                     {/* allCardValues */}
                     <tbody>
-                        {this.state.selectedCardId ? this.props.allCardValues.map(item => <AdminDraftMapComponent item={item}
-                                 key = {item.card_id} // this is the map that shows selected cards
-                                 handleSelect={this.handleSelect}
-                                 parentCardId = {this.state.selectedCardId}
-                                 parentCardName = {this.state.selectedCardName}/>) : 
+                        { this.state.selectedCardId ? 
+                        <AdminDraftMapComponent parentCardId = {this.state.selectedCardId}
+                        selectedCardName = {this.state.selectedCardName} /> : 
                                  this.props.adminCardValues.map(item => <DraftCardSelector item={item}
                                     key = {item.card_id} // so I want to make this a popover/model idk witch.
+                                    // this is the input table
                                     handleSelect={this.handleSelect}/>)}
                     </tbody>
                 </table>    

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { putResolve, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 
 function* cardGetSaga() {
@@ -10,7 +10,7 @@ function* cardGetSaga() {
         url: '/api/admin/default'
       })
       console.log('logging cardinfo in get admin cards', cardInfo)
-      yield putResolve({type: 'SET_CARD_ADMIN', payload: cardInfo.data})
+      yield put({type: 'SET_CARD_ADMIN', payload: cardInfo.data})
   } catch (error) {
     console.log('User get request failed', error);
   }
