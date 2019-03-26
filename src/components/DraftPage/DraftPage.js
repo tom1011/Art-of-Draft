@@ -25,7 +25,7 @@ class DraftPage extends Component {
   handleSelectDraft = (cardid, cardname) => (event) => {
     this.props.dispatch({type: 'DRAFTED_CARD_LIST', payload: {cardname: cardname, cardid: cardid}})
     this.props.dispatch({ type: 'GET_CARD_VALUE_ADMIN', payload: { cardname } });// will get all the card values with the specified name.
-    this.props.dispatch({type: 'DRAFTED_CARD_VALUES_DRAFTED_CARD', payload: {userId: {user_id: this.props.user.id}, adminCardValues: {cardname: cardname}  }})
+    this.props.dispatch({type: 'DRAFTED_CARD_VALUES_DRAFTED_CARD', payload: {userId: {user_id: this.props.user.id}, adminCardValues: {cardname: cardname, card_id: cardid}  }})
   }
 
   toggleSelectfunction = (event) => {
@@ -61,9 +61,7 @@ componentDidMount = () => {
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-
-    return (
-      
+    return (  
       <div>
         <p>Draft page set up</p>
         <div id='leftBox'>

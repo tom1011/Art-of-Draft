@@ -29,9 +29,6 @@ class CardList extends Component {
 
     modifyItem = (item, parentcard) => {
         for (let i = 0; i < this.props.usercards.length; i++) {
-            // console.log('logging first statement, !this.props.usercards[i].is_default' , !this.props.usercards[i].is_default)
-            // console.log('logging second and statment this.props.usercards[i].card_id',this.props.usercards[i].card_id, 'item.card_id',item.card_id )
-            
             if (!this.props.usercards[i].is_default) {
                 if (this.props.usercards[i].card_id === item.card_id && this.props.usercards[i].parent_card_id === this.state.selectedCardId) {
                     item = {
@@ -39,11 +36,8 @@ class CardList extends Component {
                         [parentcard]: this.props.usercards[i].user_card_value,
                         isModifided: true,
                     }
-                    //&& this.props.parent_card_id === this.state.selectedCardId
-
                 }
             }
-
         }
         return item
     }

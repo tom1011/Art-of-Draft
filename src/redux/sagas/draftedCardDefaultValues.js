@@ -44,10 +44,12 @@ function* draftedUpdate(action) {
             url: '/api/card/userget',
             data: action.payload.userId
         })
-        console.log('logging the post to get the current user card list', userInfo.data)
+        console.log('logging the post to get the current user card list', action.payload.adminCardValues)
         yield putResolve({ type: 'SET_USER_CARD_INFO', payload: userInfo.data })
-        yield putResolve({type: 'DRAFTED_CARD_VALUES', payload: {user: userInfo.data, adminValues: cardInfo.data, cardname: action.payload.adminCardValues.cardname}})
-        yield putResolve({type: 'FOR_PAT'})
+        yield putResolve({type: 'DRAFTED_CARD_VALUES', payload: {user: userInfo.data,
+             adminValues: cardInfo.data,
+              cardname: action.payload.adminCardValues.cardname,
+            cardId: action.payload.adminCardValues.card_id}})
     }
     catch (error) {
         console.log('User get request failed', error);

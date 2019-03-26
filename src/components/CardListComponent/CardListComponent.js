@@ -8,7 +8,6 @@ class CardList extends Component {
   }
 
   setfilter = (event) => {
-    console.log('in filter color logging colors', event.target.value)
     this.setState({
       ...this.state,
       filter: event.target.value
@@ -16,8 +15,7 @@ class CardList extends Component {
   }
 
   render() {
-    console.log('in chiled component')
-    console.log(this.props.numberCards)
+    console.log('this is card list component looking to see if render')
     return (
       <div>
         <select onChange={this.setfilter}>

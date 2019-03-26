@@ -2,16 +2,13 @@ const draftedCardValues = (state = [], action) => {
     switch (action.type) {
         case 'DRAFTED_CARD_VALUES_DEFAULT':
             // admin default cards, user are the user changed cards.
-            console.log(' drafted card values was hit logging action.payload', action.payload)
             let masterArray = action.payload.admin
 
             for (let i = 0; i < action.payload.user.length; i++) {
-                console.log('in first for loop')
                 if (action.payload.user[i].is_default) {// the user changed a default value so it will now run to next step
                     for (let j = 0; j < masterArray.length; j++) {
                         if (action.payload.user[i].card_id === masterArray[j].card_id) {
                             masterArray[j].default_value = action.payload.user[i].user_card_value
-                            console.log(action.payload.user[i].card_id, 'logging two above', masterArray[j].card_id)
                         }
                     }
                 }
@@ -19,33 +16,35 @@ const draftedCardValues = (state = [], action) => {
             return masterArray
 
         case 'DRAFTED_CARD_VALUES':
-            console.log('in drafted card values logging action.payload', action.payload)
+        console.log(' drafted card values was hit logging action.payload', action.payload)
             let cardname = action.payload.cardname.toLowerCase().split(' ').join('_')
-            masterArray = state
-             let modifiyed = false
-            for (let j = 0; j < masterArray.length; j++) {
+            let newmasterArray = [...state]
+
+            let modifiyed = false
+            for (let j = 0; j < newmasterArray.length; j++) {
                 modifiyed = false
                 for (let i = 0; i < action.payload.user.length; i++) {
-
-                    if (!action.payload.user[i].is_default && action.payload.user[i].card_id === masterArray[j].card_id) {
-                            masterArray[j].default_value =  Number(masterArray[j].default_value) + Number(action.payload.user[i].user_card_value)
+                    if (!action.payload.user[i].is_default){
+                    // this is the first check to do from the user it get ride of every that is not default
+                    {
+                        if (action.payload.user[i].card_id === newmasterArray[j].card_id){ 
+                            console.log('logging second if statement')
+                            // only card selected is beinning put though.
+                            // i need to check if the user card parent is the selected card id
+                            if (action.payload.user[i].parent_card_id === action.payload.cardId) {
+                                newmasterArray[j].default_value = Math.round(  10 * (Number(newmasterArray[j].default_value) + Number(action.payload.user[i].user_card_value)))/10
                             modifiyed = true
-                    }
-
+                        }}
+                    }}
                 }
                 // note I dont have another for loop here since master Array and admin Values should be lined up.
                 if (!modifiyed) {
-                    console.log('in !modifiyed area. logging default values', action.payload.adminValues[j], 'cardname:', cardname,
-                     'now action.payload.admin.kanna', action.payload.adminValues[j].kanna, 'looging comnined', action.payload.adminValues[j][cardname])
-                    masterArray[j].default_value =  Number(masterArray[j].default_value) + Number(action.payload.adminValues[j][cardname])
-                }
+                    console.log('logging after for loop ')
+                    
+                    newmasterArray[j].default_value = Math.round(10 * (Number(newmasterArray[j].default_value) + Number(action.payload.adminValues[j][cardname])))/10
+                    }
             }
-            
-                    console.log('in first if statement')
-                    // this logic is correct up tell here.
-
-
-            return masterArray
+            return newmasterArray
         case 'DRAFTED_CARD_VALUES_CLEAR':
             return []
         default:
