@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import UserDraftMapComponent from './UserDraftedComponet';
 import UserCardSelector from './userSelectComponent';
+import Grid from '@material-ui/core/Grid';
 
 class CardList extends Component {
     state = {
         selectedCardId: '',
         selectedCardName: '',
+        selectedCardUrl: '',
 
     }
 
@@ -19,10 +21,11 @@ class CardList extends Component {
         this.props.dispatch({ type: 'GET_USER_CARDS', payload: { user_id: this.props.user.id } });
     }
 
-    handleSelect = (cardid, cardname) => (event) => {
+    handleSelect = (cardid, cardname, cardurl) => (event) => {
         this.setState({
             selectedCardId: cardid,
             selectedCardName: cardname,
+            selectedCardUrl: cardurl,
         })
         this.props.dispatch({ type: 'GET_CARD_VALUE_ADMIN', payload: { cardname } });// will get all the card values
     }
@@ -45,8 +48,13 @@ class CardList extends Component {
     render() {
         return (
             <div>
-
-                {this.state.selectedCardId ? <h1> Selected Card: {this.state.selectedCardName} </h1> : null}
+<Grid container
+        justify="space-evenly"
+        alignItems="center"
+        alignItems="flex-start"
+      >
+                {this.state.selectedCardId ? <div><h1> Selected Card: {this.state.selectedCardName} </h1>
+                <img src={this.state.selectedCardUrl} /></div> : null}
 
                 <table>
                     <thead>
@@ -62,18 +70,20 @@ class CardList extends Component {
                             key={item.card_id}
                             handleSelect={this.handleSelect}
                             parentCardId={this.state.selectedCardId}
-                            parentCardName={this.state.selectedCardName} />) : this.props.adminCardValues.map(item => <UserCardSelector item={item}
+                            parentCardName={this.state.selectedCardName}
+                            parentCardURL={this.state.selectedCardUrl} />) : this.props.adminCardValues.map(item => <UserCardSelector item={item}
                                 key={item.card_id}
                                 handleSelect={this.handleSelect} />)}
                     </tbody>
                 </table>
+                </Grid>
             </div>
         );
     }
 }
 
 const mapStateToProps = (reduxState) => {
-    return reduxState;
+    return reduxState
 }
 
 export default connect(mapStateToProps)(CardList);

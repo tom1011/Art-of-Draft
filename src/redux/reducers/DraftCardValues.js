@@ -16,7 +16,6 @@ const draftedCardValues = (state = [], action) => {
             return masterArray
 
         case 'DRAFTED_CARD_VALUES':
-        console.log(' drafted card values was hit logging action.payload', action.payload)
             let cardname = action.payload.cardname.toLowerCase().split(' ').join('_')
             let newmasterArray = [...state]
 
@@ -28,7 +27,6 @@ const draftedCardValues = (state = [], action) => {
                     // this is the first check to do from the user it get ride of every that is not default
                     {
                         if (action.payload.user[i].card_id === newmasterArray[j].card_id){ 
-                            console.log('logging second if statement')
                             // only card selected is beinning put though.
                             // i need to check if the user card parent is the selected card id
                             if (action.payload.user[i].parent_card_id === action.payload.cardId) {
@@ -39,8 +37,6 @@ const draftedCardValues = (state = [], action) => {
                 }
                 // note I dont have another for loop here since master Array and admin Values should be lined up.
                 if (!modifiyed) {
-                    console.log('logging after for loop ')
-                    
                     newmasterArray[j].default_value = Math.round(10 * (Number(newmasterArray[j].default_value) + Number(action.payload.adminValues[j][cardname])))/10
                     }
             }

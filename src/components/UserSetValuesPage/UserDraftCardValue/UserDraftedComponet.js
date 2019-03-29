@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import Button from '@material-ui/core/Button';
 
 
 class AdminCardValueList extends Component {
@@ -12,7 +12,8 @@ class AdminCardValueList extends Component {
             begincard_value: this.props.item.default_value,
             parentCard: this.props.parentCardId,
             parentCardName: this.props.parentCardName,
-            user_id: this.props.user.id
+            user_id: this.props.user.id,
+            parentCardURL: this.props.img_url,
         }
     }
 
@@ -44,11 +45,12 @@ class AdminCardValueList extends Component {
         }
 
     render() {
+        console.log('this is the mapped component for the card drated values user.')
         return (
             <tr>
                 <td>{this.props.item.card_name}</td>
                 <td><input type="number" min="-100" max="100" step="0.1" value={this.state.cardInfo.card_value} onChange={this.handleChange} placeholder="default card value" /></td>
-                <td><button onClick={this.handleSubmint(this.props.item.card_id)}>Submit</button></td>
+                <td><Button variant="contained" color="primary"  onClick={this.handleSubmint(this.props.item.card_id)}>Submit</Button></td>
             </tr>
         );
     }

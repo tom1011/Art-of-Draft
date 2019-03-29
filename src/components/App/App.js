@@ -28,8 +28,6 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import {createMuiTheme} from '@material-ui/core/styles';
 // this is an object with many diffrent features of the colors
-import indigo from '@material-ui/core/colors/indigo';
-import cyan from '@material-ui/core/colors/cyan';
 import red from '@material-ui/core/colors/red';
 // end import material ui
 
@@ -43,7 +41,7 @@ const theme = createMuiTheme ({
     },
     secondary: {light: '#ffea00',
     main: '#b28900',// amber
-    dark: '#000000',
+    dark: '#000000',//black
     contrastText: '#fff',}
     ,
     error: red,

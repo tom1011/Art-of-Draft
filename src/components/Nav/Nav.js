@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 // import './Nav.css';
@@ -18,7 +17,6 @@ const styles = theme => ({
 })
 // end material ui
 
-
 const Nav = (props) => (
   <div>
       <AppBar position="relative">
@@ -26,7 +24,7 @@ const Nav = (props) => (
   {/* <div className="nav"> */}
   <Button color='primary'  variant="contained" href="home" >
 
-      <h2>Art of Draft</h2>
+      <h2 fontFamily='Arial Black'>Art of Draft</h2>
     </Button>
     <div>
     <Button variant="contained" color="secondary" href="#/home">

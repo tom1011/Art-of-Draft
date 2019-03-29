@@ -7,8 +7,7 @@ import './DraftPage.css'
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
-
-
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   typography: {
@@ -42,9 +41,10 @@ class DraftPage extends Component {
       anchorEl: null,
     })
   }
-  
+
   clearStates = () => {
     this.props.dispatch({type: 'DRAFTED_CARD_LIST_CLEAR'})
+    this.props.dispatch({type: 'DRAFTED_CARD_VALUES_DEFAULT_SAGA', payload: {user_id: this.props.user.id}})
     this.setState({
         toggleSelect: false,
         anchorEl: null,
@@ -58,21 +58,36 @@ componentDidMount = () => {
     this.props.dispatch({ type: 'DRAFTED_CARD_VALUES_DEFAULT_SAGA' ,payload: {user_id: this.props.user.id} })
   }
 
+  
+
+
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    return (  
+    return (
       <div>
-        <p>Draft page set up</p>
+        
+        <p align='center'>Draft Away</p>
+        <Grid container
+        justify="space-evenly"
+        alignItems="center"
+        alignItems="flex-start"
+      >
         <div id='leftBox'>
         {/*  bellow button is to select/add another card to the drafted list. */}
-        {this.props.draftedCardList.length >= 1 ? this.props.draftedCardList.map(item => <div>{item.cardname}</div>): null }
+        <Grid >  
+        {this.props.draftedCardList.length >= 1 ? 
+          this.props.draftedCardList.map(item => <h2>{item.cardname}</h2>)
+          : null }
         { this.props.draftedCardList.length >= 5 ? null : <>
+      
           <Button onClick={this.toggleSelectfunction}
             aria-owns={open ? 'simplepopover' : undefined}
             aria-haspopup='true'
             variant="contained" color='secondary'
+
           >Add Drafted Card</Button>
+
           <Popover
             id='simplepopover' // this is the id we definded in the open above in aria-owns
             open={open}
@@ -87,18 +102,31 @@ componentDidMount = () => {
               horizontal: 'center',
             }}  
           >
-          
-
             <CurrentDrafted handleSelectDraft={this.handleSelectDraft}/>
           </Popover> </>}
+          </Grid>
           {/* end adding card to list */}
         </div>
+        {/*  this is the compont that gets map over when the drafted card button is pressed. */}
+        <Grid justify="space-evenly"
+        alignItems="center"
+        alignItems="flex-start"
+        
+        >
         <div id='rightBox'>
           <ListCardsComponent numberCards={this.state.numberCards}/>
         </div>
+        </Grid>
+        </Grid>
+        <Grid container
+        justify="space-evenly"
+        alignItems="center"
+        alignItems="flex-start"
+      >
         <Button variant="contained" color='primary' onClick={this.clearStates}>
           New Draft
         </Button>
+        </Grid>
       </div>
     );
   }

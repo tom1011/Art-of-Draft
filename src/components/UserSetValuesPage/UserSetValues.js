@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import UserMapComponent from './UserMapComponent';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 
 class CardList extends Component {
 

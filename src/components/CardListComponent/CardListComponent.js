@@ -4,7 +4,8 @@ import CardMapComponent from './CardMapComponent';
 
 class CardList extends Component {
   state = {
-    filter: ''
+    filter: '',
+    labelWidth: 0,
   }
 
   setfilter = (event) => {
@@ -14,10 +15,16 @@ class CardList extends Component {
     })
   }
 
+  sortNumber = (a,b)  => {
+    return b.default_value - a.default_value;
+}
+
   render() {
-    console.log('this is card list component looking to see if render')
+    this.props.draftedCardValues.sort(this.sortNumber)
     return (
       <div>
+
+          
         <select onChange={this.setfilter}>
         <option value = '' onChange={this.setfilter}>Filter list</option>
           <option value='red' onChange={this.setfilter}>Color: Red</option>
@@ -34,7 +41,8 @@ class CardList extends Component {
             </tr>
           </thead>
           <tbody>
-             {/* will render default screen for draft ie name card draft value and show default values.*/}
+            {/* will render default screen for draft ie name card draft value and show default values.*/}
+                         
             {window.location.href.split('/').pop() === 'draft' && this.state.filter ?
              this.props.draftedCardValues.filter(card => card.color_name === this.state.filter)
             //  this will show the filter list of cards on the draft screen.

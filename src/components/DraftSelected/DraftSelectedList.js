@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DraftCardSelector from './DraftSelectedComponent';
-
-import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     button: {
@@ -11,9 +11,6 @@ const styles = theme => ({
 })
 
 class CardList extends Component {
-
-
-
     componentDidMount = () => {
         this.getCards()
     }
@@ -26,18 +23,16 @@ class CardList extends Component {
 
         return (
             <div>
-
-                    
-                    {/* allCardValues */}
-                    
-                        
-                            <div>Card: Name</div>
-
-                            {this.props.adminCardValues.map(item => <DraftCardSelector item={item}
-                                key={item.card_id}
-                            handleSelect={this.props.handleSelectDraft} />)}
-                    
-                
+                {/* allCardValues */}
+                <Grid container
+                    justify="space-evenly"
+                    alignItems="center"
+                    alignItems="flex-start"
+                >
+                    {this.props.adminCardValues.map(item => <Grid><DraftCardSelector item={item}
+                        key={item.card_id}
+                        handleSelect={this.props.handleSelectDraft} /></Grid>)}
+                </Grid>
             </div>
         );
     }
