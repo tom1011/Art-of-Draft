@@ -11,6 +11,7 @@ import getAllCardValues from './getAllCardData';
 import putAllCardValues from './putALLCardValues';
 import userPostCardValues from './UserPostCardDate';
 import userPutCardValues from './userPutCardDraftValues';
+import draftedCardValues from './draftedCardDefaultValues';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -33,5 +34,6 @@ export default function* rootSaga() {
     putAllCardValues(), // dynamicly post to DB according to hero selected.
     userPostCardValues(), // post the user card values to DB
     userPutCardValues(), // updates the user card values in DB
+    draftedCardValues(), // this should update the value list for cards during drafting.
   ]);
 }

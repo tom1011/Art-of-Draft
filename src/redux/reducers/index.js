@@ -4,7 +4,9 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import usercards from './setCardReducer';
 import adminCardValues from './setAdminCardReducer';
-import allCardValues from './setCardValuesReducer';
+import selectedCardValues from './setCardValuesReducer';
+import draftedCardList from './draftedCardListreducer';
+import draftedCardValues from './DraftCardValues';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +20,9 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   usercards, // set the array of cards.
   adminCardValues, // gets the default admin card values from DB
-  allCardValues, // gets all the information from admin table.
+  selectedCardValues, // gets the selected card information from admin table.
+  draftedCardList, // this will store the current drafted card list.
+  draftedCardValues, // this is the entire list of cards data with the users changes added to (the default and then when drafting)
 });
 
 export default rootReducer;

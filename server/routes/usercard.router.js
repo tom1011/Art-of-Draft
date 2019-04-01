@@ -15,7 +15,6 @@ router.post('/userget', (req, res) => {
         });
 });
 
-
 router.post('/userpost', (req, res) => {
     if (req.body.is_default){
         console.log('hit /userpost ie post for update default cards from user logging req.body', req.body)

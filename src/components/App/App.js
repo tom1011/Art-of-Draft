@@ -23,6 +23,35 @@ import userSetDefault from '../UserSetValuesPage/UserSetValues';
 import userSetDraftValues from '../UserSetValuesPage/UserDraftCardValue/UserDrafted';
 
 import './App.css';
+// material ui below
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+
+import {createMuiTheme} from '@material-ui/core/styles';
+// this is an object with many diffrent features of the colors
+import red from '@material-ui/core/colors/red';
+// end import material ui
+
+const theme = createMuiTheme ({
+  palette: {
+    primary: {
+      light: '#2196f3',
+      main: '#2c387e',
+      dark: '#000000',
+      contrastText: '#fff',
+    },
+    secondary: {light: '#ffea00',
+    main: '#b28900',// amber
+    dark: '#000000',//black
+    contrastText: '#fff',}
+    ,
+    error: red,
+    contrastThreshold: 3,
+    tonalOffset: 0.2, // black magic use for each theme.
+  },
+  typography: {
+    useNextVariants: true,
+  },
+})
 
 class App extends Component {
   componentDidMount () {
@@ -31,6 +60,7 @@ class App extends Component {
 
   render() {
     return (
+      <MuiThemeProvider theme={theme}>
       <Router>
         <div>
           <Nav />
@@ -91,6 +121,7 @@ class App extends Component {
           <Footer />
         </div>
       </Router>
+      </MuiThemeProvider>
   )}
 }
 

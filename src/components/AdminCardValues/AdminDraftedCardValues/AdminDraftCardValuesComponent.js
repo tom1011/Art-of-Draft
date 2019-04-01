@@ -37,7 +37,12 @@ class AdminCardValueList extends Component {
         // }
     }
 
+    componentDidMount() {
+        console.log('in component did mount')
+    }
+
     render() {
+        console.log('in compont that i want to update showing render.', this.props.selectedCardValues)
         return (
             <tr>
                 <td>{this.props.item.card_name}</td>

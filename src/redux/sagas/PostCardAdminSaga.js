@@ -3,7 +3,6 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* cardGetAdminSaga(action) {
     try {
-        yield console.log('admin get saga', action.payload)
        yield axios({
           method: 'POST',
           url: '/api/admin/default',

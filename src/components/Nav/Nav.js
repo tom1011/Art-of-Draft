@@ -1,52 +1,88 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
+// import './Nav.css';
+
+
+// material ui
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  button: {
+      margin: theme.spacing.unit,
+  },
+})
+// end material ui
 
 const Nav = (props) => (
-  <div className="nav">
-    <Link to="/home">
-      <h2 className="nav-title">Art of Draft</h2>
-    </Link>
-    <div className="nav-right">
-      <Link className="nav-link" to="/home">
+  <div>
+      <AppBar position="relative">
+      <Toolbar>
+  {/* <div className="nav"> */}
+  <Button color='primary'  variant="contained" href="home" >
+
+      <h2 fontFamily='Arial Black'>Art of Draft</h2>
+    </Button>
+    <div>
+    <Button variant="contained" color="secondary" href="#/home">
+      
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,
         and call this link 'Login / Register' if they are not */}
         {props.user.id ? 'Home' : 'Login / Register'}
-      </Link>
+      </Button>
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>
-        <Link className="nav-link" to="/draft">
+        <Button variant="contained" color="secondary" href="#/draft">
             Draft Page
-          </Link>
-          <Link className="nav-link" to="/info">
+          </Button>
+          <Button variant="contained" color="secondary" href="#/info">
+          
             Info Page
-          </Link>
-          <Link className="nav-link" to="/adminDefault">
+          
+          </Button>
+          
+          {props.user.clearance_level > 5 && (
+            <>
+          <Button variant="contained" color="secondary" href="#/adminDefault">
             admin Default Values Page
-          </Link>
-          <Link className="nav-link" to="/adminDraftDefault">
+          </Button>
+          <Button variant="contained" color="secondary" href="#/adminDraftDefault" >
             admin Draft Value
-          </Link>
-          <Link className="nav-link" to="/userSetDefault">
+          </Button>
+          </>)}
+          
+          <Button variant="contained" color="secondary" href="#/userSetDefault">
+    
             user default Value
-          </Link>
-          <Link className="nav-link" to="/userSetDraftValues">
+          
+          </Button>
+          <Button variant="contained" color="secondary" href="#/userSetDraftValues">
+          
             user draft Value
-          </Link> 
-          <LogOutButton className="nav-link"/>
+           
+          </Button>
+          
+          <LogOutButton />
         </>
       )}
       {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/about">
+      <Button variant="contained" color="secondary" href="#/userSetDraftValues">
         About
-      </Link>
+      
+      </Button>
+
+</div>
+
+      </Toolbar>
+      </AppBar>
     </div>
-  </div>
 );
+
 
 // Instead of taking everything from state, we just want the user
 // object to determine if they are logged in
@@ -57,4 +93,4 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps)(Nav);
+export default withStyles(styles)(connect(mapStateToProps)(Nav));
