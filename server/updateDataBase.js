@@ -37,7 +37,7 @@ cleandata = (rawdata) => {
     for (let i = 0; i < cardlist.length; i++){
         // console.log('in for loop'
         let cardtype = cardlist[i].card_type;
-        let cardname = cardlist[i].card_name.english;
+        let cardname = cardlist[i].card_name.english.toLowerCase().split(' ').join('_');
         let cardimg = cardlist[i].large_image.default;
         let cardrarity = cardlist[i].rarity;
         let cardcolor = undefined;

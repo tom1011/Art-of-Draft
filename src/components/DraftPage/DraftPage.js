@@ -57,10 +57,7 @@ componentDidMount = () => {
   getCards =() => {
     this.props.dispatch({ type: 'DRAFTED_CARD_VALUES_DEFAULT_SAGA' ,payload: {user_id: this.props.user.id} })
   }
-
   
-
-
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
