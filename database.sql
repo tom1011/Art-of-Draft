@@ -33,3 +33,7 @@ CREATE TABLE "user_rating"
  "card_id" INT REFERENCES "card_table");
  
  ALTER TABLE "user" ADD "clearance_level" INTEGER NOT NULL DEFAULT 0;
+
+      ALTER TABLE "user_rating" ADD "is_default" BOOLEAN DEFAULT FALSE;
+     
+     ALTER TABLE "user_rating" ADD "parent_card_id" INT REFERENCES "card_table";

@@ -8,7 +8,9 @@ import React from 'react';
 const InfoPage = () => (
   <div>
     <p>
-      Info Page
+      This site was made to be a drafting aid to the card game Artifact by Valve. it uses techonologys such as 
+      React, React-Redux, React-saga, Material-UI, and others. This site was made by David Friday during his time at Prime
+      Digital Academy.
     </p>
   </div>
 );
