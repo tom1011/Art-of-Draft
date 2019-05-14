@@ -22,7 +22,7 @@ const Nav = (props) => (
       <AppBar position="relative">
       <Toolbar>
   {/* <div className="nav"> */}
-  <Button color='primary'  variant="contained" href="home" >
+  <Button color='primary'  variant="contained" href="#/home" >
 
       <h2 fontFamily='Arial Black'>Art of Draft</h2>
     </Button>
