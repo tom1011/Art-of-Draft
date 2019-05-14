@@ -14,7 +14,6 @@ function* cardGetSaga(action) {
     console.log('User get request failed', error);
   }
 }
-
 function* userSaga() {
   yield takeLatest('GET_USER_CARDS', cardGetSaga);
 }

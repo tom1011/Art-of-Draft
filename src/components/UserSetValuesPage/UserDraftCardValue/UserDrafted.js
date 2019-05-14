@@ -5,6 +5,7 @@ import UserCardSelector from './userSelectComponent';
 import Grid from '@material-ui/core/Grid';
 
 class CardList extends Component {
+    // to pass between child and child need at this state level might put into reducer later.
     state = {
         selectedCardId: '',
         selectedCardName: '',
@@ -20,7 +21,7 @@ class CardList extends Component {
         this.props.dispatch({ type: 'GET_ADMIN_VALUES' });// only get the default card values/card info
         this.props.dispatch({ type: 'GET_USER_CARDS', payload: { user_id: this.props.user.id } });
     }
-
+    // selected card is picked this function runs.
     handleSelect = (cardid, cardname, cardurl) => (event) => {
         this.setState({
             selectedCardId: cardid,
@@ -29,7 +30,7 @@ class CardList extends Component {
         })
         this.props.dispatch({ type: 'GET_CARD_VALUE_ADMIN', payload: { cardname } });// will get all the card values
     }
-
+    // this is a filter for combining the diffrent list to give the ones I want. It might be the cause for the Dom is not updating properly.
     modifyItem = (item, parentcard) => {
         for (let i = 0; i < this.props.usercards.length; i++) {
             if (!this.props.usercards[i].is_default) {
@@ -66,12 +67,16 @@ class CardList extends Component {
                     </thead>
                     {/* allCardValues */}
                     <tbody>
+                        {/* force update did not update the component on new update. might of been a proplem with my callback though.*/}
+                        {/* fist check is if a card is selected if a card is seleted the first one runs and is the selected card values 
+                        second compont is the user selecting which card to pick.
+                        */}
                         {this.state.selectedCardId ? this.props.selectedCardValues.map(item => <UserDraftMapComponent item={this.modifyItem(item, this.state.selectedCardName.toLowerCase())}
                             key={item.card_id}
                             handleSelect={this.handleSelect}
                             parentCardId={this.state.selectedCardId}
                             parentCardName={this.state.selectedCardName}
-                            parentCardURL={this.state.selectedCardUrl} />) : this.props.adminCardValues.map(item => <UserCardSelector item={item}
+                            parentCardURL={this.state.selectedCardUrl} />): this.props.adminCardValues.map(item => <UserCardSelector item={item}
                                 key={item.card_id}
                                 handleSelect={this.handleSelect} />)}
                     </tbody>

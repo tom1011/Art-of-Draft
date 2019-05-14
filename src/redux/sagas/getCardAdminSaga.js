@@ -13,7 +13,6 @@ function* cardGetSaga() {
     console.log('User get request failed', error);
   }
 }
-
 function* userSaga() {
   yield takeLatest('GET_ADMIN_VALUES', cardGetSaga);
 }
